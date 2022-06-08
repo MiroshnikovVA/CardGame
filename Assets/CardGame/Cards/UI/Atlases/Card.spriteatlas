@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Card
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 65
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ccec16d173b51ed40a9ca61d956ebd7e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ccfc5e503aee6ae47b56f72708598ba9, type: 3}
+  - {fileID: 21300000, guid: bdf8131209ee85f4bbe05349bf586933, type: 3}
+  - {fileID: 21300000, guid: 1648d37262d3b734ca06222aa7adbb0c, type: 3}
+  - {fileID: 21300000, guid: 8467bd13df3a9ba48b73fb4861e3084c, type: 3}
+  - {fileID: 21300000, guid: 11636483de414c1479f371b64c43670b, type: 3}
+  - {fileID: 21300000, guid: ec6abf05e1b17ad40a76bfbd2e63562d, type: 3}
+  - {fileID: 21300000, guid: e55219d651d9e5a4d88162788e701933, type: 3}
+  - {fileID: 21300000, guid: f4d9069a7426e52428e6589077b7fc51, type: 3}
+  - {fileID: 21300000, guid: 5c17deec5624e0245a1766bdc57eddc9, type: 3}
+  - {fileID: 21300000, guid: 0fdb4fefd18e73349980f62486e1c479, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Art_mask
+  - default_art
+  - Card_frame
+  - HP_icon
+  - Mana_icon
+  - Title_frame
+  - Art_frame
+  - Description_frame
+  - Attack_icon
+  - Stone_icon
+  m_RenderDataMap: {}
+  m_Tag: Card
+  m_IsVariant: 0
