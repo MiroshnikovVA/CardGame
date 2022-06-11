@@ -13,6 +13,7 @@ namespace CardGame.Cards.UI
         CardDropPlace _dropPlace;
         Transform _startPlaceTransform;
 
+        const float dragScale = 1.5f;
 
         void Awake()
         {
@@ -33,6 +34,8 @@ namespace CardGame.Cards.UI
 
             _startPlaceTransform = transform.parent;
             var movePanelTransform = transform.parent.parent;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one * dragScale;
             transform.SetParent(movePanelTransform);
 
             _dropPlace = null;
@@ -46,6 +49,8 @@ namespace CardGame.Cards.UI
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
+            transform.localScale = Vector3.one;
+
             if (_dropPlace)
             {
                 transform.SetParent(_dropPlace.transform);
