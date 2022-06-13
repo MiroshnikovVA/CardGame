@@ -4,23 +4,24 @@ using UnityEngine.EventSystems;
 namespace CardGame.Cards.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
+    [RequireComponent(typeof(Card))]
     public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         Camera _camera;
         Vector3 _offset;
         Vector3 _startPosition;
         CanvasGroup _canvasGroup;
-        CardDropPlace _dropPlace;
-        Transform _startPlaceTransform;
-
-        const float dragScale = 1.5f;
+        CardSet _dropPlace;
+        Card _card;
+        Transform _startParent;
 
         void Awake()
         {
-            _canvasGroup = GetComponent<CanvasGroup>(); 
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _card = GetComponent<Card>(); ;
         }
 
-        public void Drop(CardDropPlace dropPlace)
+        public void Drop(CardSet dropPlace)
         {
             _dropPlace = dropPlace;
         }
@@ -32,11 +33,11 @@ namespace CardGame.Cards.UI
             _offset = _startPosition - _camera.ScreenToWorldPoint(eventData.position);
             _canvasGroup.blocksRaycasts = false;
 
-            _startPlaceTransform = transform.parent;
-            var movePanelTransform = transform.parent.parent;
             transform.localRotation = Quaternion.identity;
-            transform.localScale = Vector3.one * dragScale;
-            transform.SetParent(movePanelTransform);
+
+            _startParent = transform.parent;
+            var moveParent = _startParent.parent;
+            transform.SetParent(moveParent);
 
             _dropPlace = null;
         }
@@ -49,19 +50,18 @@ namespace CardGame.Cards.UI
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
-            transform.localScale = Vector3.one;
+            transform.SetParent(_startParent);
 
             if (_dropPlace)
             {
-                transform.SetParent(_dropPlace.transform);
+                _dropPlace.MoveCard(_card);
                 enabled = false;
             }
             else
             {
-                transform.SetParent(_startPlaceTransform);
+                _card.MoveToPlace();
+                _canvasGroup.blocksRaycasts = true;
             }
-
-            _canvasGroup.blocksRaycasts = true;
         }
     }
 }
