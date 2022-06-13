@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625ec6a1967974d46b7c457dc4058719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "_\u0441ardPrefab": {fileID: 7579307847762820820, guid: d2e6bf1c24c08a347a1ab7562b02f977, type: 3}
+  _cardPrefab: {fileID: 7579307847762820820, guid: d2e6bf1c24c08a347a1ab7562b02f977, type: 3}
   _cardPlacePrefab: {fileID: 1866811882460073713, guid: 16db27cf96f51e541ac1c2f462afe86f, type: 3}
   _cardsParentTransform: {fileID: 423847899}
 --- !u!4 &363870568
