@@ -31,6 +31,7 @@ namespace CardGame.Cards.UI
             var cardPlace = Instantiate(_cardPlacePrefab, _cardsParentTransform);
             card.Init(cardPlace);
 
+            card.SetArt(null);
             _artLoader.LoadSprite(sprite => card.SetArt(sprite));
 
             return card;
