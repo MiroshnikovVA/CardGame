@@ -7,7 +7,5 @@ namespace CardGame.Cards
     public interface ICardFactory
     {
         List<ICard> CreateCards(int count);
-
-        ICard CreateCard();
     }
 }

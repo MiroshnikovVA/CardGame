@@ -32,7 +32,10 @@ namespace CardGame.Game
             loadScreen.SetActive(true);
             yield return null;
             var cards = cardFactory.CreateCards(startHandCardCount);
-            yield return null;
+            foreach (var card in cards)
+            {
+                yield return card.WaitingForInitialization();
+            }
             loadScreen.SetActive(false);
 
             foreach (var card in cards)
