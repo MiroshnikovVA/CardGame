@@ -38,6 +38,8 @@ namespace CardGame.Cards.UI
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
             _camera = eventData.enterEventCamera;
+            if (!_camera) return;
+
             _startPosition = transform.position;
             _offset = _startPosition - _camera.ScreenToWorldPoint(eventData.position);
             _canvasGroup.blocksRaycasts = false;
@@ -55,6 +57,8 @@ namespace CardGame.Cards.UI
 
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
+            if (!_camera) return;
+
             var newpos = _camera.ScreenToWorldPoint(eventData.position);
             transform.position = newpos + _offset;
         }
