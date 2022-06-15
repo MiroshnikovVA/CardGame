@@ -4,6 +4,7 @@ using CardGame.Cards;
 using CardGame.Cards.UI;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 namespace CardGame.Game
 {
@@ -19,22 +20,32 @@ namespace CardGame.Game
         private CardSet _table;
 
         [SerializeField]
-        private Button _button;
+        private Button _changeCharacteristicsButton;
+        
+        [SerializeField]
+        private Button _restartButton;
 
         void OnValidate()
         {
             if (!_cardFactory) Debug.LogError("cardFactory is null", this);
             if (!_hand) Debug.LogError("_hand is null", this);
             if (!_table) Debug.LogError("_table is null", this);
-            if (!_button) Debug.LogError("_button is null", this);
+            if (!_changeCharacteristicsButton) Debug.LogError("_changeCharacteristicsButton is null", this);
+            if (!_restartButton) Debug.LogError("_restartButton is null", this);
             if (!_loadScreen) Debug.LogError("_loadScreen is null", this);
+        }
+
+        private void Awake()
+        {
+            _restartButton.onClick.AddListener(() => 
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name));
         }
 
         void Start() => StartCoroutine(StartGame(_loadScreen, _cardFactory, _hand, _table));
 
         IEnumerator StartGame(GameObject loadScreen, ICardFactory cardFactory, ICardSet hand, ICardSet table)
         {
-            const int startHandCardCount = 6;
+            int startHandCardCount = Random.Range(4,6+1);
 
             loadScreen.SetActive(true);
             yield return null;
@@ -45,7 +56,7 @@ namespace CardGame.Game
 
             foreach (var card in cards) yield return hand.MoveCard(card).WaitForCompletion();
 
-            _button.onClick.AddListener(ButtonClick);
+            _changeCharacteristicsButton.onClick.AddListener(ButtonClick);
         }
 
         private void ButtonClick()
@@ -55,7 +66,7 @@ namespace CardGame.Game
 
         IEnumerator ButtonClickCoroutine()
         {
-            _button.enabled = false;
+            _changeCharacteristicsButton.enabled = false;
 
             var card = _hand.GetNextCard();
 
@@ -72,7 +83,7 @@ namespace CardGame.Game
                     yield return card.Destroy().WaitForCompletion();
             }
 
-            _button.enabled = true;
+            _changeCharacteristicsButton.enabled = true;
         }
 
         void InitCharacteristics(ICard card)

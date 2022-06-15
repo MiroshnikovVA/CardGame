@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -10,6 +11,8 @@ namespace CardGame.Cards.UI
         const string _uri = "https://picsum.photos/256/256";
         const int spriteWidth = 256;
         const int spriteHeight = 256;
+
+        List<Texture2D> _textures = new List<Texture2D>();
 
         public void LoadSprite(Action<Sprite> loadCallback)
         {
@@ -34,8 +37,17 @@ namespace CardGame.Cards.UI
                 else
                 {
                     var texture = DownloadHandlerTexture.GetContent(request);
+                    _textures.Add(texture);
                     loadCallback(texture);
                 }
+            }
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var texture in _textures)
+            {
+                Destroy(texture);
             }
         }
     }
