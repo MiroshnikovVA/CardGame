@@ -65,6 +65,8 @@ namespace CardGame.Cards.UI
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
+            if (!_camera) return;
+
             _illumination.enabled = false;
 
             transform.SetParent(_startParent);
