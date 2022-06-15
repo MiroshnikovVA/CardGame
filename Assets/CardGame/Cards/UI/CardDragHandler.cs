@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace CardGame.Cards.UI
 {
@@ -14,6 +15,9 @@ namespace CardGame.Cards.UI
         CardSet _dropPlace;
         Card _card;
         Transform _startParent;
+
+        [SerializeField]
+        Outline _illumination;
 
         void Awake()
         {
@@ -39,6 +43,8 @@ namespace CardGame.Cards.UI
             var moveParent = _startParent.parent;
             transform.SetParent(moveParent);
 
+            _illumination.enabled = true;
+
             _dropPlace = null;
         }
 
@@ -50,6 +56,8 @@ namespace CardGame.Cards.UI
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
+            _illumination.enabled = false;
+
             transform.SetParent(_startParent);
 
             if (_dropPlace)
