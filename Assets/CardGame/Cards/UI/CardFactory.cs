@@ -25,7 +25,7 @@ namespace CardGame.Cards.UI
             if (!_artLoader) Debug.LogError("artLoader is null", this);
         }
 
-        private ICard CreateCard()
+        public ICard CreateCard()
         {
             var card = Instantiate(_cardPrefab, _cardsParentTransform);
             var cardPlace = Instantiate(_cardPlacePrefab, _cardsParentTransform);
@@ -37,7 +37,7 @@ namespace CardGame.Cards.UI
             return card;
         }
 
-        public List<ICard> CreateCards(int count)
+        public IReadOnlyList<ICard> CreateCards(int count)
         {
             return Enumerable.Range(0, count).Select(i => CreateCard()).ToList();
         }
