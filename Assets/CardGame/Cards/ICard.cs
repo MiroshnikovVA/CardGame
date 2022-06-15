@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -5,8 +6,16 @@ namespace CardGame.Cards
 {
     public interface ICard
     {
-        YieldInstruction MoveToPlace();
+        int Attack { get; set; }
+        int Mana { get; set; }
+        int HP { get; set; }
+
+        Tween MoveToPlace();
         CustomYieldInstruction WaitingForInitialization();
-        void SetPlace(Transform transform, Action<ICard> onChangedThisPlace);
+
+        void SetPlace(Transform transform, Func<ICard, Tween> onRemoveFromSetCallback);
+
+        Tween Destroy();
+        void ToForeground();
     }
 }

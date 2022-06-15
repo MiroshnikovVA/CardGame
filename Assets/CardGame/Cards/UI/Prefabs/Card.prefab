@@ -890,6 +890,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _art: {fileID: 1866811882456123180}
+  _attackText: {fileID: 1866811881855177499}
+  _manaText: {fileID: 1866811883137781995}
+  _hpText: {fileID: 1866811882287600284}
 --- !u!1 &1866811882635718410
 GameObject:
   m_ObjectHideFlags: 0

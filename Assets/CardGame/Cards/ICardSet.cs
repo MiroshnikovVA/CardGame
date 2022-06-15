@@ -1,9 +1,10 @@
-using UnityEngine;
+using DG.Tweening;
 
 namespace CardGame.Cards
 {
     public interface ICardSet
     {
-        YieldInstruction MoveCard(ICard card);
+        Tween MoveCard(ICard card);
+        public ICard GetNextCard();
     }
 }

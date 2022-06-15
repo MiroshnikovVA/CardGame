@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,13 +11,17 @@ namespace CardGame.Cards.UI
         List<ICard> _cards;
         RectTransform _rectTransform;
 
+        int _currentIndex;
+
+        const float _animationTime = 0.3f;
+
         private void Awake()
         {
             _cards = new List<ICard>();
             _rectTransform = transform as RectTransform;
         }
 
-        public YieldInstruction MoveCards(List<ICard> cards)
+        public Tween MoveCards(List<ICard> cards)
         {
             _cards.AddRange(cards);
             foreach (var card in cards)
@@ -27,7 +32,7 @@ namespace CardGame.Cards.UI
             return PlayAnimation();
         }
 
-        public YieldInstruction MoveCard(ICard card)
+        public Tween MoveCard(ICard card)
         {
             _cards.Add(card);
             card.SetPlace(transform, OnRemoveCard);
@@ -35,24 +40,32 @@ namespace CardGame.Cards.UI
             return PlayAnimation();
         }
 
-        private void OnRemoveCard(ICard card)
+        private Tween OnRemoveCard(ICard card)
         {
+            if (_currentIndex > _cards.IndexOf(card)) _currentIndex--;
             _cards.Remove(card);
-            PlayAnimation();
+            return PlayAnimation();
         }
 
-        private YieldInstruction PlayAnimation()
+        private Tween PlayAnimation()
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
-
-            YieldInstruction onlyOneAnimation = null;
-
-            foreach (var card in _cards)
+            var s = DOTween.Sequence().AppendInterval(0).AppendCallback(() =>
             {
-                onlyOneAnimation = card.MoveToPlace();
-            }
+                foreach (var card in _cards)
+                {
+                    card.MoveToPlace();
+                }
+            }).AppendInterval(_animationTime);
 
-            return onlyOneAnimation;
+            return s;
+        }
+
+        public ICard GetNextCard()
+        {
+            if (_cards.Count == 0) return null;
+            if (_currentIndex >= _cards.Count) _currentIndex = 0;
+            return _cards[_currentIndex++];
         }
     }
 }
