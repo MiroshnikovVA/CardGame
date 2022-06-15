@@ -19,6 +19,11 @@ namespace CardGame.Cards.UI
         [SerializeField]
         Outline _illumination;
 
+        private void OnValidate()
+        {
+            if (!_illumination) Debug.LogError("illumination is null", this);
+        }
+
         void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
