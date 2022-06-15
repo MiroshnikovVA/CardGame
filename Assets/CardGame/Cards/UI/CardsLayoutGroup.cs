@@ -32,9 +32,9 @@ namespace CardGame.Cards.UI
             new int[] { -1, 0, 1, 0, -1 },
             new int[] { -2, 0, 1, 1, 0, -2 } };
 
-        public float _xOffset = 30f;
-        public float _yOffset = 30f;
-        public float _radius = 20f;
+        float _xOffset = 30f;
+        float _yOffset = 30f;
+        float _radius = 20f;
 
         public override void SetLayoutHorizontal()
         {
