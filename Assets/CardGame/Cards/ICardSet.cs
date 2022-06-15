@@ -5,6 +5,6 @@ namespace CardGame.Cards
     public interface ICardSet
     {
         Tween MoveCard(ICard card);
-        public ICard GetNextCard();
+        ICard GetNextCard();
     }
 }
