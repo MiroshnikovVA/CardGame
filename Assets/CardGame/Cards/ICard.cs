@@ -10,6 +10,8 @@ namespace CardGame.Cards
         int Mana { get; set; }
         int HP { get; set; }
 
+        public Tween CurrentCounterAnimation { get; }
+
         Tween MoveToPlace();
         CustomYieldInstruction WaitingForInitialization();
 

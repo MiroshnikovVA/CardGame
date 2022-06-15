@@ -30,30 +30,32 @@ namespace CardGame.Cards.UI
         public int Attack { 
             get => _attack; 
             set 
-            { 
+            {
+                PlayTextCounterAnimation(_attackText, _attack, value);
                 _attack = value; 
-                _attackText.text = value.ToString();
                 ScaleTween(_attackText);
             } 
         }
         public int Mana {
             get => _mana; 
             set 
-            { 
+            {
+                PlayTextCounterAnimation(_manaText, _mana, value);
                 _mana = value; 
-                _manaText.text = value.ToString();
                 ScaleTween(_manaText);
             } 
         }
         public int HP { 
             get => _hp; 
             set 
-            { 
+            {
+                PlayTextCounterAnimation(_hpText, _hp, value);
                 _hp = value; 
-                _hpText.text = value.ToString();
                 ScaleTween(_hpText);
             } 
         }
+
+        public Tween CurrentCounterAnimation { get; private set; }
 
         private void OnValidate()
         {
@@ -126,6 +128,27 @@ namespace CardGame.Cards.UI
                 .Append(obj.transform.DOScale(0.9f, 0.1f))
                 .Append(obj.transform.DOScale(1.1f, 0.1f))
                 .Append(obj.transform.DOScale(1.0f, 0.05f));
+        }
+
+        void PlayTextCounterAnimation(TextMeshProUGUI text, int from, int to)
+        {
+            var s = DOTween.Sequence();
+
+            var oldCurrentCounterAnimation = CurrentCounterAnimation;
+            if (oldCurrentCounterAnimation!=null && !oldCurrentCounterAnimation.IsComplete()) 
+                s.Append(oldCurrentCounterAnimation);
+
+            var h = from < to ? 1 : -1;
+            var value = from;
+
+            while (value != to) {
+                value += h;
+                var hValue = value;
+                s.AppendInterval(0.1f)
+                 .AppendCallback(() => text.text = hValue.ToString());
+            }
+
+            CurrentCounterAnimation = s;
         }
     }
 }

@@ -65,10 +65,11 @@ namespace CardGame.Game
 
                 card.ToForeground();
 
+                if (card.CurrentCounterAnimation!=null && !card.CurrentCounterAnimation.IsComplete())
+                    yield return card.CurrentCounterAnimation.WaitForCompletion();
+
                 if (card.HP <= 0)
-                {
                     yield return card.Destroy().WaitForCompletion();
-                }
             }
 
             _button.enabled = true;
